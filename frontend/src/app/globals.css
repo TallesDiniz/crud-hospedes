@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #1e3a5f;
+  --color-hotel-blue: #4a90d9;
+  --color-hotel-blue-hover: #357abd;
+}
