@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏨 CRUD de Hóspedes — Sistema de Reserva de Hotel
 
-## Getting Started
+Projeto acadêmico de um sistema de gerenciamento de hóspedes para um hotel, desenvolvido com **Java Spring Boot** no backend e **Next.js** no frontend.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📁 Estrutura do Projeto
+
+```
+Reserva-Hotel/
+├── backend/    → API REST em Java com Spring Boot
+└── frontend/   → Interface web em Next.js + Tailwind CSS
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✅ Funcionalidades
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **RF0101** — Cadastrar hóspede
+- **RF0102** — Alterar cadastro de hóspede
+- **RF0103** — Inativar hóspede
+- **RF0104** — Consultar hóspedes com filtros por nome e CPF
 
-## Learn More
+### Regras de negócio aplicadas
 
-To learn more about Next.js, take a look at the following resources:
+- Todos os dados obrigatórios validados (RN0201)
+- CPF único no sistema (RN0202)
+- Formato de e-mail validado (RN0211)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🖥️ Tecnologias
 
-## Deploy on Vercel
+**Backend**
+- Java 17
+- Spring Boot 3.2.5
+- Spring Data JPA
+- Spring Validation
+- Banco de dados H2 (in-memory)
+- Arquitetura: Controller → Fachada → Strategy → DAO
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Frontend**
+- Next.js 16 (App Router)
+- TypeScript
+- Tailwind CSS v4
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🚀 Como rodar
+
+### Pré-requisitos
+
+- [Node.js 18+](https://nodejs.org/)
+- [Java 17+](https://adoptium.net/)
+- [Maven](https://maven.apache.org/download.cgi)
+- [IntelliJ IDEA](https://www.jetbrains.com/idea/) (recomendado)
+
+---
+
+### Backend
+
+1. Abra a pasta `backend/` no IntelliJ IDEA
+2. Aguarde o Maven baixar as dependências (Maven Reload)
+3. Execute a classe `HotelApplication.java`
+
+O servidor sobe em **http://localhost:8080**
+
+> Console do banco H2 disponível em: http://localhost:8080/h2-console  
+> JDBC URL: `jdbc:h2:mem:hoteldb` | Usuário: `sa` | Senha: *(vazio)*
+
+---
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+A aplicação abre em **http://localhost:3000** e automaticamente se comunica com o backend na porta 8080.
+
+---
+
+## 📡 Endpoints da API
+
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| `GET` | `/api/hospedes` | Lista todos os hóspedes (filtros: `?nome=` `?cpf=`) |
+| `POST` | `/api/hospedes` | Cadastra novo hóspede |
+| `PUT` | `/api/hospedes/{id}` | Altera dados do hóspede |
+| `DELETE` | `/api/hospedes/{id}` | Inativa o hóspede |
+
+---
+
+## 📋 Dados do hóspede
+
+| Campo | Obrigatório |
+|-------|-------------|
+| Nome completo | ✅ |
+| CPF | ✅ |
+| Data de nascimento | ✅ |
+| E-mail | ✅ |
+| Telefone | ✅ |
+| Logradouro | ✅ |
+| Número | ✅ |
+| CEP | ✅ |
+| Bairro | ✅ |
+| Cidade | ✅ |
+| Estado | ✅ |
+| Complemento | ❌ |
